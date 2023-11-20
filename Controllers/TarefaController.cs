@@ -61,23 +61,20 @@ public class TarefaController : ControllerBase
         try
         {
             //Expressões lambda
-            Tarefa? tarefaCadastrado =
+            Tarefa? tarefaCadastrada =
                 _context.Tarefas.FirstOrDefault(x => x.TarefaId == id);
-            if (tarefaCadastrado != null)
+            if (tarefaCadastrada != null)
             {
-                Categoria? categoria =
-                    _context.Categorias.Find(tarefa.CategoriaId);
-                if (categoria == null)
-                {
-                    return NotFound();
-                }
-               
-                    tarefaCadastrado.Status = "Em andamento";
-               if(tarefaCadastrado.Status == tarefaCadastrado.Status){
-                    tarefaCadastrado.Status = "Concluido";
+                    _context.Categorias.Find(tarefa.TarefaId);               
+                  if(tarefaCadastrada.Status == "não iniciado"){
+                    tarefaCadastrada.Status = "Em andamento";
+                  }
+                    
+               else if(tarefaCadastrada.Status == "Em andamento"){
+                    tarefaCadastrada.Status = "Concluido";
                 }
                 
-                _context.Tarefas.Update(tarefaCadastrado);
+                _context.Tarefas.Update(tarefaCadastrada);
                 _context.SaveChanges();
                 return Ok();
             }
