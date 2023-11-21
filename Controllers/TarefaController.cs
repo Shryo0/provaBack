@@ -85,4 +85,28 @@ public class TarefaController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+
+/*   [HttpGet]
+    [Route("naoconcluidas")]
+    public IActionResult Naoconcluidas()
+    {
+        try
+        {
+            //Include
+             Tarefa? tarefaCadastrada =
+                _context.Tarefas.Status;
+
+            List<Tarefa> tarefas =
+                _context.Tarefas.
+                Include(x => x.Categoria).
+                ToList();
+
+            if(tarefas.Status ==)
+            return tarefas.Count == 0 ? NotFound() : Ok(tarefas);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    } */
 }
